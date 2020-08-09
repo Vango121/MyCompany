@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">MyCompany</string>
+    <string name="finances_bottom">Finanse</string>
+    <string name="workers_bottom">Pracownicy</string>
+    <string name="manage_workers">Zarządzaj zatrudnieniem</string>
+    <string name="edit_contracts_workers">Edytuj szczegóły umów</string>
+    <string name="working_hours">Niestandardowe godziny pracy</string>
+    <string name="payment_workers">Lista płac</string>
+    <string name="sum_amount_workers">Suma wypłat w tym miesiącu wynosi:</string>
+    <string name="startEditText">Godzina Rozpoczęcia</string>
+    <string name="ButtonSubmit">Dodaj</string>
+    <string name="name">Imie</string>
+    <string name="surname">Naziwsko</string>
+    <string name="money">Stawka godzinowa</string>
+    <string name="cancel">Anuluj</string>
+</resources>

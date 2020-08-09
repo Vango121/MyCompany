@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">MyCompany</string>
+    <string name="home_bottom" translatable="false">Home</string>
+    <string name="finances_bottom">Finances</string>
+    <string name="workers_bottom">Workers</string>
+    <string name="manage_workers">Manage the employment</string>
+    <string name="edit_contracts_workers">Edit details of agreements</string>
+    <string name="working_hours">Custom working hours</string>
+    <string name="payment_workers">The payroll</string>
+    <string name="sum_amount_workers">The sum of payments this month:</string>
+    <string name="startEditText">Start Time</string>
+    <string name="ButtonSubmit">Add</string>
+    <string name="name">First Name</string>
+    <string name="surname">Surname</string>
+    <string name="money">Hourly rate</string>
+    <string name="cancel">Cancel</string>
+</resources>

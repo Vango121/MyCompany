@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+<TextView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text="Add Worker"
+    android:textSize="30sp"
+    android:gravity="center"
+    android:background="@color/textWorkers"
+    android:textColor="@color/white"
+    android:drawableLeft="@drawable/add_worker"/>
+    <EditText
+        android:id="@+id/editTextName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:hint="@string/name"
+        android:paddingStart="10dp"
+        android:paddingTop="15dp"/>
+
+    <EditText
+        android:id="@+id/editTextSurname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:hint="@string/surname"
+        android:paddingStart="10dp"
+        android:paddingTop="5dp"/>
+
+    <EditText
+        android:id="@+id/editTextMoney"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="number|numberDecimal"
+        android:hint="@string/money"
+        android:paddingStart="10dp"
+        android:paddingTop="5dp"/>
+</LinearLayout>
