@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.commit
 import com.marcel.mycompany.databinding.ActivityMainBinding
+import com.marcel.mycompany.screens.workers.WorkersFragment
 
 
 class MainActivity : AppCompatActivity() {
@@ -20,7 +21,19 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
          val view = binding.root
         setContentView(view)
-        changeFragment(Mainfragment())
+        if(savedInstanceState==null){
+            supportFragmentManager.commit {
+                setCustomAnimations(
+                    R.anim.slide_in,
+                    R.anim.fade_out,
+                    R.anim.fade_in,
+                    R.anim.slide_out
+                )
+                add(R.id.host_fragment,Mainfragment())
+                addToBackStack("main")
+            }
+        }
+
         binding.bottomNavigation.setOnNavigationItemSelectedListener { item: MenuItem ->
             when(item.itemId){
                 R.id.home -> {
@@ -62,26 +75,30 @@ class MainActivity : AppCompatActivity() {
 
     override fun onBackPressed() {
        val index= supportFragmentManager.backStackEntryCount-2
-        val tag=supportFragmentManager.getBackStackEntryAt(index).name
-        when(tag){
-            Mainfragment().javaClass.name -> {
-                home =true
-                finances=false
-                workers=false
-                binding.bottomNavigation.selectedItemId=R.id.home
+        if(index>=0) {
+            val tag = supportFragmentManager.getBackStackEntryAt(index).name
+            when (tag) {
+                Mainfragment().javaClass.name -> {
+                    home = true
+                    finances = false
+                    workers = false
+                    binding.bottomNavigation.selectedItemId = R.id.home
+                }
+                WorkersFragment().javaClass.name -> {
+                    home = false
+                    finances = false
+                    workers = true
+                    binding.bottomNavigation.selectedItemId = R.id.workers
+                }
+                FinancesFragment().javaClass.name -> {
+                    home = false
+                    finances = true
+                    workers = false
+                    binding.bottomNavigation.selectedItemId = R.id.finances
+                }
             }
-            WorkersFragment().javaClass.name -> {
-                home =false
-                finances=false
-                workers=true
-                binding.bottomNavigation.selectedItemId=R.id.workers
-            }
-            FinancesFragment().javaClass.name -> {
-                home = false
-                finances=true
-                workers=false
-                binding.bottomNavigation.selectedItemId=R.id.finances
-            }
+        } else{
+            finish()
         }
         super.onBackPressed()
     }
