@@ -5,36 +5,37 @@ import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import com.marcel.mycompany.Event
-import io.reactivex.rxjava3.core.Observable
-import io.reactivex.rxjava3.core.ObservableOnSubscribe
-import io.reactivex.rxjava3.core.Observer
+import kotlinx.coroutines.Deferred
+import kotlinx.coroutines.runBlocking
 
-class WorkersViewModel(application: Application, dialog: AddWorkersDialog) : AndroidViewModel(application) {
 
-    private val _navigateToDetails = MutableLiveData<Event<String>>()
+class WorkersViewModel(application: Application) : AndroidViewModel(application) {
 
-     val navigateToDetails : LiveData<Event<String>>
-        get() = _navigateToDetails
+    private val _navigateToDialog = MutableLiveData<Event<String>>()
+     val navigateToDialog : LiveData<Event<String>>
+        get() = _navigateToDialog
 
     var checked = MutableLiveData<Boolean>()
-    val sharedpref = RepositoryCl()
-    val workersdialog = dialog
-
+    val repository = RepositoryCl(application)
+    private var allWorkers: Deferred<LiveData<List<Worker>>> = repository.getAllWorkers()
     init {
-    checked=sharedpref.getSwitchState(getApplication())
-    workersdialog.getChanges().subscribe{
-        Log.i("imie",it.name)
-    }
+    checked=repository.getSwitchState()
     }
     fun saveSwitchState(){
-        sharedpref.saveSwitchState(getApplication(), checked.value!!)
+        repository.saveSwitchState( checked.value!!)
     }
     fun userClicksOnButton() { // add worker button click
-        _navigateToDetails.value =
+        _navigateToDialog.value =
             Event("itemId")  // Trigger the event by setting a new Event as a new value
     }
+    fun getAllWorkers() : LiveData<List<Worker>> = runBlocking {
+        allWorkers.await()
+    }
+    fun getDataFromDialog(worker:Worker){
+        repository.insertWorker(worker)
+    }
+
 
 
 }

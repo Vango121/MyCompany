@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
 
 <TextView
     android:id="@+id/dialogBar"
@@ -22,7 +27,8 @@
         android:inputType="textPersonName"
         android:hint="@string/name"
         android:paddingStart="10dp"
-        android:paddingTop="15dp"/>
+        android:paddingTop="15dp"
+        />
 
     <EditText
         android:id="@+id/editTextSurname"
@@ -43,4 +49,5 @@
         android:hint="@string/money"
         android:paddingStart="10dp"
         android:paddingTop="5dp"/>
-</LinearLayout>
+    </LinearLayout>
+</layout>
