@@ -27,7 +27,7 @@ class AddWorkersDialog :  DialogFragment() {
 
         return activity?.let {
             // Use the Builder class for convenient dialog construction
-            val builder = AlertDialog.Builder(it)
+            val builder = AlertDialog.Builder(it,R.style.DialogTheme)
             builder
                 .setView(v)
                 .setPositiveButton("OK"

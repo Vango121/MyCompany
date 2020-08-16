@@ -26,6 +26,7 @@ class WorkersFragment : Fragment() {
     }
     private lateinit var binding: WorkersFragmentBinding
     private lateinit var viewModel: WorkersViewModel
+    private var workersHrs: Double = 0.0
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -66,6 +67,12 @@ class WorkersFragment : Fragment() {
         //get all workers from room database
         viewModel.getAllWorkers().observe(viewLifecycleOwner, Observer {
         removeWorkerDialog.addData(it)
+            addButtonDialog.addData(it)
+            var total_amount=0.0
+            for (person:Worker in it){
+               total_amount+= person.hours*person.money
+            }
+            binding.textView2.setText("$total_amount$")
         })
         removeWorkerDialog.workerToRemove.observe(viewLifecycleOwner, Observer {
             viewModel.deleteWorker(it)
@@ -78,13 +85,28 @@ class WorkersFragment : Fragment() {
                 val time1 = binding.editTextTime.text.toString()
                 val time2 = binding.editTextTime2.text.toString()
                 if (time1!="" && time2!=""){
-                viewModel.calcHours(time1,time2)
-                    addButtonDialog.show(parentFragmentManager,it)
+                workersHrs=viewModel.calcHours(time1,time2)
+                    if (workersHrs>0){
+                        addButtonDialog.show(parentFragmentManager,it)
+                    }else{
+                        context?.let { it1 -> Toasty.error(it1, "Czas nie moze byc mniejszy od 0 ",Toast.LENGTH_SHORT,true).show() } //
+                    }
+
+
                 }else{
-                    context?.let { it1 -> Toasty.error(it1, "wprowadz tekst",Toast.LENGTH_SHORT,true).show() }
+                    context?.let { it1 -> Toasty.error(it1, "wprowadz tekst",Toast.LENGTH_SHORT,true).show() } //dodac strings
                 }
             }
         })
+
+        addButtonDialog.workertoUpdate.observe(viewLifecycleOwner, Observer {
+            for (person : Worker in it){
+                person.hours+=workersHrs
+                viewModel.updateWorker(person)
+
+            }
+        })
+
         return binding.root
     }
     fun switch(isChecked:Boolean){

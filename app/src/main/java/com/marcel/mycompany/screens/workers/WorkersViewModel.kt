@@ -57,7 +57,10 @@ class WorkersViewModel(application: Application) : AndroidViewModel(application)
     fun deleteWorker(worker:Worker){
         repository.deleteWorker(worker)
     }
-    fun calcHours(start:String, end: String){
+    fun updateWorker(worker: Worker){
+        repository.updateWorker(worker)
+    }
+    fun calcHours(start:String, end: String): Double{
         val format = SimpleDateFormat("HH:mm")
         val date1: Date = format.parse(start)
         val date2: Date = format.parse(end)
@@ -75,6 +78,7 @@ class WorkersViewModel(application: Application) : AndroidViewModel(application)
             hrsWorked=diffInHrs.toDouble()
         }
         application1.applicationContext?.let { Toasty.info(it,"Hours worked $hrsWorked", Toast.LENGTH_SHORT,true).show() }
+        return hrsWorked
     }
 
     fun addButton(){ // add button ui method

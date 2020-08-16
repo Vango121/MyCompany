@@ -10,6 +10,9 @@
     <style name="DialogTheme" parent="Theme.AppCompat.Light.Dialog">
         <item name="colorAccent">@color/colorPrimary</item>
     </style>
+    <style name="CheckBoxStyle">
+        <item name="buttonTint">@color/tint</item>
+    </style>
 
 
 </resources>

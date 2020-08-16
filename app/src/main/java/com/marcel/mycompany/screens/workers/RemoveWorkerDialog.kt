@@ -30,7 +30,7 @@ class RemoveWorkerDialog() :  DialogFragment(), DeleteWorkerRVAdapter.OnNoteList
             adapter=workerAdapter
         }
         return activity.let {
-            val builder = AlertDialog.Builder(it)
+            val builder = AlertDialog.Builder(it,R.style.DialogTheme)
             builder
                 .setView(view)
                 .setNegativeButton(getString(R.string.cancel)
