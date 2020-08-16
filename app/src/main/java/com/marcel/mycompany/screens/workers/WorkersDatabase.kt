@@ -5,7 +5,7 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 
-@Database(entities = [Worker::class], version = 1,exportSchema = true)
+@Database(entities = [Worker::class], version = 3,exportSchema = true)
 abstract class WorkersDatabase : RoomDatabase() {
 
     abstract fun workerDao() : WorkersDao
@@ -18,6 +18,8 @@ abstract class WorkersDatabase : RoomDatabase() {
                     context,
                     WorkersDatabase::class.java,
                     "workers_table")
+
+                    .fallbackToDestructiveMigration()
                     .build()
             }
             return instance

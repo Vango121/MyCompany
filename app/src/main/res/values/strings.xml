@@ -15,4 +15,7 @@
     <string name="money">Hourly rate</string>
     <string name="cancel">Cancel</string>
     <string name="add_worker">Add Worker</string>
+    <string name="remove_worker">Remove Worker</string>
+    <string name="complete_allFields_dialog">Complete all fields</string>
+    <string name="submit_work">Present workers</string>
 </resources>

@@ -5,6 +5,7 @@ import androidx.test.ext.junit.runners.AndroidJUnit4
 import org.junit.runner.RunWith
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions.click
+import androidx.test.espresso.action.ViewActions.typeText
 import androidx.test.espresso.assertion.ViewAssertions.doesNotExist
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers.*
@@ -39,6 +40,15 @@ class WorkersFragmentTest{
         onView(withId(R.id.dialogBar)).check(matches(withText(R.string.add_worker)))
         onView(withId(android.R.id.button2)).perform(click())
         onView(withText(R.string.add_worker)).check(doesNotExist())
-
+    }
+    @Test
+    fun test_addWorkersDialogFill(){
+        val scenario = launchFragmentInContainer<WorkersFragment>()
+        onView(withId(R.id.imageView2)).perform(click())
+        onView(withId(R.id.dialogBar)).check(matches(withText(R.string.add_worker)))
+        onView(withId(R.id.editTextName)).perform(typeText("Marcel"))
+        onView(withId(R.id.editTextSurname)).perform(typeText("Barski"))
+        onView(withId(R.id.editTextMoney)).perform(typeText("12"))
+        onView(withText(R.string.cancel)).perform(click())
     }
 }

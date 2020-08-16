@@ -15,4 +15,7 @@
     <string name="money">Stawka godzinowa</string>
     <string name="cancel">Anuluj</string>
     <string name="add_worker">Dodaj pracownika</string>
+    <string name="remove_worker">Usuń pracownika</string>
+    <string name="complete_allFields_dialog">Wypełnij wszystkie pola</string>
+    <string name="submit_work">Obecni pracownicy</string>
 </resources>

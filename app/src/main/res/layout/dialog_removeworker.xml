@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <TextView
+            android:id="@+id/dialogBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/textWorkers"
+            android:gravity="center"
+            android:text="@string/remove_worker"
+            android:textColor="@color/white"
+            android:textSize="30sp"
+            app:drawableLeftCompat="@drawable/del_worker" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:paddingTop="5dp"
+            android:id="@+id/recycler_view_workerlist_remove"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/dialogBar"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            />
+
+    </RelativeLayout>
+</layout>

@@ -132,6 +132,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:src="@drawable/del_worker"
+            android:onClick="@{()-> workersViewModel.userClicksOnRemoveButton()}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/imageView2"
             app:layout_constraintTop_toTopOf="@+id/guidelineFirst" />
@@ -170,7 +171,8 @@
             android:layout_marginTop="15dp"
             android:layout_marginEnd="30dp"
             android:ems="10"
-            android:inputType="time"
+            android:inputType="none"
+            android:focusable="false"
             android:backgroundTint="@color/tint"
             app:layout_constraintEnd_toStartOf="@+id/editTextTime2"
             app:layout_constraintStart_toStartOf="parent"
@@ -185,7 +187,8 @@
             android:layout_marginEnd="10dp"
             android:ems="10"
             android:backgroundTint="@color/tint"
-            android:inputType="time"
+            android:inputType="none"
+            android:focusable="false"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/editTextTime"
             app:layout_constraintTop_toBottomOf="@+id/textViewHours" />
@@ -212,10 +215,12 @@
             android:background="@drawable/rounded_button"
             android:text="@string/ButtonSubmit"
             android:textColor="@color/textWorkers"
+            android:onClick="@{()-> workersViewModel.addButton()}"
             app:layout_constraintBottom_toTopOf="@+id/view3"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editTextTime2" />
+            app:layout_constraintTop_toBottomOf="@+id/editTextTime2"
+            />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline5"
