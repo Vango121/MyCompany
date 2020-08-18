@@ -18,4 +18,14 @@
     <string name="remove_worker">Usuń pracownika</string>
     <string name="complete_allFields_dialog">Wypełnij wszystkie pola</string>
     <string name="submit_work">Obecni pracownicy</string>
+    <string name="withdraw">Wypłata</string>
+    <string name="check_payment_List">Lista płac</string>
+    <string name="currency">zł</string>
+    <string name="empty_text">Godziny pracy nie mogą być puste</string>
+    <string name="time">"Czas nie może być mniejszy niż 0 "</string>
+    <string name="payroll_description">Imie  Nazwisko  Zarobki  Zaliczki  Suma</string>
+    <string name="earnings">Zarobki</string>
+    <string name="advance">Zaliczki</string>
+    <string name="Sum">Suma</string>
+    <string name="select_all">Zaznacz wszystkich</string>
 </resources>

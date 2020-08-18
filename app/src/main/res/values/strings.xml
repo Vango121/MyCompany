@@ -18,4 +18,14 @@
     <string name="remove_worker">Remove Worker</string>
     <string name="complete_allFields_dialog">Complete all fields</string>
     <string name="submit_work">Present workers</string>
+    <string name="withdraw">Payment</string>
+    <string name="check_payment_List">Payroll</string>
+    <string name="currency">$</string>
+    <string name="empty_text">"Working hours cannot be empty "</string>
+    <string name="time">Time diff must be greater than 0</string>
+    <string name="payroll_description">"Name  Surname  Earnings  Advance  Sum "</string>
+    <string name="earnings">Earnings</string>
+    <string name="advance">Advance</string>
+    <string name="Sum">Sum</string>
+    <string name="select_all">Select All</string>
 </resources>

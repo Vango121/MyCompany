@@ -27,9 +27,10 @@ class AddButtonDialog :  DialogFragment(){
             var builder =AlertDialog.Builder(it,R.style.DialogTheme)
             builder
                 .setView(view)
-                .setNegativeButton(getString(R.string.cancel)
+                .setNegativeButton(getString(R.string.select_all)
                 ) { dialog, id ->
                     // User cancelled the dialog
+                    _workertoUpdate.value=workerList
                 }
                 .setPositiveButton("OK"){dialog, id->
                     _workertoUpdate.value=addButtonAdapter.getCheckedWorkers()

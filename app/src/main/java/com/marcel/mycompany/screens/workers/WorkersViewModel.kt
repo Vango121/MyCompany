@@ -29,6 +29,9 @@ class WorkersViewModel(application: Application) : AndroidViewModel(application)
     private val _addButton = MutableLiveData<Event<String>>()
     val addButton : LiveData<Event<String>>
         get() = _addButton
+    private val _payroll = MutableLiveData<Event<String>>()
+    val payroll : LiveData<Event<String>>
+        get() = _payroll
 
     var application1 = application
     var checked = MutableLiveData<Boolean>()
@@ -83,6 +86,9 @@ class WorkersViewModel(application: Application) : AndroidViewModel(application)
 
     fun addButton(){ // add button ui method
         _addButton.value=Event("AddButton")
+    }
+    fun payroll(){
+        _payroll.value=Event("Payroll")
     }
 
 }

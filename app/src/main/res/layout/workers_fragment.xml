@@ -245,11 +245,36 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:layout_marginTop="25dp"
-            android:text="1000$"
+            android:text="@string/currency"
             android:textColor="@color/textWorkers"
             android:textSize="20sp"
             android:textStyle="bold"
             app:layout_constraintStart_toEndOf="@+id/imageView5"
+            app:layout_constraintTop_toBottomOf="@+id/textViewPay" />
+
+        <Button
+            android:id="@+id/buttonwithdraw"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/rounded_button"
+            android:text="@string/check_payment_List"
+            android:onClick="@{()-> workersViewModel.payroll()}"
+            android:textColor="@color/textWorkers"
+            app:layout_constraintStart_toEndOf="@+id/textView2"
+            app:layout_constraintTop_toBottomOf="@+id/textViewPay" />
+
+        <Button
+            android:id="@+id/buttonPayments"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/rounded_button"
+            android:text="@string/withdraw"
+            android:textColor="@color/textWorkers"
+            app:layout_constraintStart_toEndOf="@+id/buttonwithdraw"
             app:layout_constraintTop_toBottomOf="@+id/textViewPay" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

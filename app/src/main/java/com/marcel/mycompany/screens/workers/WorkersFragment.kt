@@ -38,6 +38,7 @@ class WorkersFragment : Fragment() {
         val dialog = AddWorkersDialog()
         val removeWorkerDialog = RemoveWorkerDialog() // remove dialog class
         val addButtonDialog = AddButtonDialog() // dialog on add button click
+        val payrollDialog = PayrollDialog() // payroll dialog class
             viewModel = ViewModelProvider(this).get(WorkersViewModel::class.java)
             binding.workersViewModel=viewModel
 
@@ -68,11 +69,13 @@ class WorkersFragment : Fragment() {
         viewModel.getAllWorkers().observe(viewLifecycleOwner, Observer {
         removeWorkerDialog.addData(it)
             addButtonDialog.addData(it)
+            payrollDialog.addData(it)
             var total_amount=0.0
             for (person:Worker in it){
-               total_amount+= person.hours*person.money
+               total_amount+= (person.hours*person.money)-person.advance
             }
-            binding.textView2.setText("$total_amount$")
+            val currrency = getString(R.string.currency)
+            binding.textView2.setText("$total_amount$currrency")
         })
         removeWorkerDialog.workerToRemove.observe(viewLifecycleOwner, Observer {
             viewModel.deleteWorker(it)
@@ -89,12 +92,12 @@ class WorkersFragment : Fragment() {
                     if (workersHrs>0){
                         addButtonDialog.show(parentFragmentManager,it)
                     }else{
-                        context?.let { it1 -> Toasty.error(it1, "Czas nie moze byc mniejszy od 0 ",Toast.LENGTH_SHORT,true).show() } //
+                        context?.let { it1 -> Toasty.error(it1, getString(R.string.time),Toast.LENGTH_SHORT,true).show() } //
                     }
 
 
                 }else{
-                    context?.let { it1 -> Toasty.error(it1, "wprowadz tekst",Toast.LENGTH_SHORT,true).show() } //dodac strings
+                    context?.let { it1 -> Toasty.error(it1, getString(R.string.empty_text),Toast.LENGTH_SHORT,true).show() } //dodac strings
                 }
             }
         })
@@ -105,6 +108,14 @@ class WorkersFragment : Fragment() {
                 viewModel.updateWorker(person)
 
             }
+        })
+
+        viewModel.payroll.observe(viewLifecycleOwner, Observer {
+            it.getContentIfNotHandled()?.let {
+                payrollDialog.show(parentFragmentManager,it)
+
+            }
+
         })
 
         return binding.root
