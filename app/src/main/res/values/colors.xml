@@ -8,4 +8,6 @@
     <color name="viewWorkers">#2393D9</color>
     <color name="tint">#73BCD9</color>
     <color name="navBar">#006BAE</color>
+    <color name="buttonClicked">#2673BCD9</color>
+    <color name="button">#4D73BCD9</color>
 </resources>

@@ -27,11 +27,7 @@ class PayrollDialog :  DialogFragment() {
             val builder =AlertDialog.Builder(it,R.style.AlertDialogTheme)
             builder
                 .setView(v)
-                .setPositiveButton("OK"
-                ) { dialog, id ->
-                    //method overriden below onCLick
-                }
-                .setNegativeButton(getString(R.string.cancel)
+                .setNegativeButton(getString(R.string.close)
                 ) { dialog, id ->
                     // User cancelled the dialog
                 }

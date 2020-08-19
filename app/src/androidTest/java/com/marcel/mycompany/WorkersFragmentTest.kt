@@ -51,4 +51,12 @@ class WorkersFragmentTest{
         onView(withId(R.id.editTextMoney)).perform(typeText("12"))
         onView(withText(R.string.cancel)).perform(click())
     }
+    @Test
+    fun test_payroll(){
+        val scenario= launchFragmentInContainer<WorkersFragment>()
+        onView(withId(R.id.buttonPayroll)).perform(click())
+        onView(withText(R.string.check_payment_List)).check(matches(isDisplayed()))
+        onView(withText(R.string.close)).perform(click())
+        onView(withText(R.id.buttonPayroll)).check(doesNotExist())
+    }
 }

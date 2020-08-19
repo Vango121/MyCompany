@@ -17,9 +17,12 @@ class AddButtonRVAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             R.layout.presence_workers_row
             ,parent
             , false)
+
         return AddButtonViewHoler(workerview)
     }
-
+    fun clearList(){
+        workersChecked.clear()
+    }
     override fun getItemCount(): Int {
         return workers.size
     }
@@ -45,8 +48,10 @@ class AddButtonRVAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         override fun onClick(v: View?) { //checkbox onClick
             val position :Int = workersChecked.indexOf(workers[adapterPosition])
             Log.i("position",position.toString())
+
             when(position){
                 -1 -> workersChecked.add(workers[adapterPosition])
+
                 else -> workersChecked.removeAt(position)
             }
 

@@ -61,7 +61,6 @@ class WorkersFragment : Fragment() {
         })
         //check if dialog closed and pass data to viewmodel
         dialog.workerInfo.observe(viewLifecycleOwner, Observer {
-            Log.i("passed",it.name)
             viewModel.getDataFromDialog(it)
         })
 
@@ -90,7 +89,9 @@ class WorkersFragment : Fragment() {
                 if (time1!="" && time2!=""){
                 workersHrs=viewModel.calcHours(time1,time2)
                     if (workersHrs>0){
+                        addButtonDialog.clearListInAdapter()
                         addButtonDialog.show(parentFragmentManager,it)
+                       // binding.button2.setBackgroundResource(R.drawable.rounded_button_clicked)
                     }else{
                         context?.let { it1 -> Toasty.error(it1, getString(R.string.time),Toast.LENGTH_SHORT,true).show() } //
                     }
@@ -106,7 +107,7 @@ class WorkersFragment : Fragment() {
             for (person : Worker in it){
                 person.hours+=workersHrs
                 viewModel.updateWorker(person)
-
+                //binding.button2.setBackgroundResource(R.drawable.rounded_button)
             }
         })
 

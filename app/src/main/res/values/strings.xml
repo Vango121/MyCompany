@@ -28,4 +28,5 @@
     <string name="advance">Advance</string>
     <string name="Sum">Sum</string>
     <string name="select_all">Select All</string>
+    <string name="close">Close</string>
 </resources>

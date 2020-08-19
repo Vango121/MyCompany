@@ -2,6 +2,7 @@ package com.marcel.mycompany.screens.workers
 
 import android.app.AlertDialog
 import android.app.Dialog
+import android.content.Context
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.DialogFragment
@@ -44,5 +45,9 @@ class AddButtonDialog :  DialogFragment(){
         addButtonAdapter.addWorkers(list)
         workerList=list
         addButtonAdapter.notifyDataSetChanged()
+    }
+
+    fun clearListInAdapter(){
+        addButtonAdapter.clearList()
     }
 }
