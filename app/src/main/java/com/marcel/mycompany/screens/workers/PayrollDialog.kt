@@ -14,7 +14,6 @@ import kotlinx.android.synthetic.main.dialog_removeworker.view.*
 
 class PayrollDialog :  DialogFragment() {
     lateinit var v: View
-    lateinit var alertDialog: AlertDialog
     var workerAdapter : PayRollRVAdapter = PayRollRVAdapter()
     var workerList: List<Worker> = ArrayList()
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/textViewRowWorker"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="Imie + Nazwisko+ zarobki 100 zaliczka 100"
+            android:gravity="center_vertical"
+            android:textSize="15sp"
+            app:drawableLeftCompat="@drawable/workers"
+            android:layout_alignParentTop="true"/>
+
+        <EditText
+            android:id="@+id/editTextAdvance"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:textSize="15sp"
+            android:layout_toEndOf="@+id/textViewRowWorker"
+            android:hint="@string/advance" />
+
+        <View
+            android:id="@+id/view"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_below="@id/editTextAdvance"
+            android:layout_marginTop="6dp"
+            android:background="@color/viewWorkers" />
+    </RelativeLayout>
+
+</layout>

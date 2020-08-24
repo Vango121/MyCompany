@@ -11,7 +11,7 @@
     <string name="startEditText">Godzina Rozpoczęcia</string>
     <string name="ButtonSubmit">Dodaj</string>
     <string name="name">Imie</string>
-    <string name="surname">Naziwsko</string>
+    <string name="surname">Nazwisko</string>
     <string name="money">Stawka godzinowa</string>
     <string name="cancel">Anuluj</string>
     <string name="add_worker">Dodaj pracownika</string>
@@ -29,4 +29,5 @@
     <string name="Sum">Suma</string>
     <string name="select_all">Zaznacz wszystkich</string>
     <string name="close">Zamknij</string>
+    <string name="withdraw_all">Wypłać wszystko</string>
 </resources>

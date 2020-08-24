@@ -39,6 +39,7 @@ class WorkersFragment : Fragment() {
         val removeWorkerDialog = RemoveWorkerDialog() // remove dialog class
         val addButtonDialog = AddButtonDialog() // dialog on add button click
         val payrollDialog = PayrollDialog() // payroll dialog class
+        val paymentDialog = PaymentDialog()
             viewModel = ViewModelProvider(this).get(WorkersViewModel::class.java)
             binding.workersViewModel=viewModel
 
@@ -118,7 +119,11 @@ class WorkersFragment : Fragment() {
             }
 
         })
-
+        viewModel.payment.observe(viewLifecycleOwner, Observer {
+            it.getContentIfNotHandled()?.let {
+                paymentDialog.show(parentFragmentManager,it)
+            }
+        })
         return binding.root
     }
     fun switch(isChecked:Boolean){

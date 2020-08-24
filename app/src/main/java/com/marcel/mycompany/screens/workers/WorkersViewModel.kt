@@ -33,6 +33,10 @@ class WorkersViewModel(application: Application) : AndroidViewModel(application)
     val payroll : LiveData<Event<String>>
         get() = _payroll
 
+    private val _payment = MutableLiveData<Event<String>>()
+    val payment : LiveData<Event<String>>
+        get() = _payment
+
     var application1 = application
     var checked = MutableLiveData<Boolean>()
     val repository = RepositoryCl(application)
@@ -90,5 +94,7 @@ class WorkersViewModel(application: Application) : AndroidViewModel(application)
     fun payroll(){
         _payroll.value=Event("Payroll")
     }
-
+    fun payment(){
+        _payment.value=Event("Payment")
+    }
 }

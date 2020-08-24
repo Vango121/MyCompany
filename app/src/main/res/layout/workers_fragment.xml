@@ -204,7 +204,8 @@
             android:checked="@={workersViewModel.checked}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/textViewHours"
-            app:layout_constraintTop_toTopOf="@+id/textViewHours" />
+            app:layout_constraintTop_toTopOf="@+id/textViewHours"
+            tools:ignore="UseSwitchCompatOrMaterialXml" />
 
         <Button
             android:id="@+id/button2"
@@ -273,6 +274,7 @@
             android:layout_marginTop="15dp"
             android:background="@drawable/rounded_button"
             android:text="@string/withdraw"
+            android:onClick="@{() -> workersViewModel.payment()}"
             android:textColor="@color/textWorkers"
             app:layout_constraintStart_toEndOf="@+id/buttonPayroll"
             app:layout_constraintTop_toBottomOf="@+id/textViewPay" />
