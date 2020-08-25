@@ -2,7 +2,6 @@ package com.marcel.mycompany.screens.workers
 
 import android.app.TimePickerDialog
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,8 +12,8 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.marcel.mycompany.R
 import com.marcel.mycompany.databinding.WorkersFragmentBinding
+import com.marcel.mycompany.screens.workers.dialog.*
 import es.dmoral.toasty.Toasty
-import java.text.SimpleDateFormat
 import java.util.*
 
 

@@ -1,4 +1,4 @@
-package com.marcel.mycompany.screens.workers
+package com.marcel.mycompany.screens.workers.repository
 
 import android.content.Context
 import androidx.lifecycle.MutableLiveData

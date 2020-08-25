@@ -1,8 +1,8 @@
-package com.marcel.mycompany.screens.workers
+package com.marcel.mycompany.screens.workers.repository
 
-import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.marcel.mycompany.screens.workers.Worker
 import kotlinx.coroutines.Deferred
 
 interface Repository {

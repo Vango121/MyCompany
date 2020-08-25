@@ -1,10 +1,11 @@
-package com.marcel.mycompany.screens.workers
+package com.marcel.mycompany.screens.workers.dialog
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.marcel.mycompany.R
+import com.marcel.mycompany.screens.workers.Worker
 import kotlinx.android.synthetic.main.payroll_row.view.*
 
 class PayRollRVAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -34,7 +35,7 @@ class PayRollRVAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         val earnings = view.textViewRowEarnings
         val advance = view.textViewRowAdvance
         val sum = view.textViewRowSum
-        fun initUi(worker:Worker){
+        fun initUi(worker: Worker){
             firstName.setText(worker.name)
             surname.setText(worker.surName)
             val money : Double = worker.money*worker.hours

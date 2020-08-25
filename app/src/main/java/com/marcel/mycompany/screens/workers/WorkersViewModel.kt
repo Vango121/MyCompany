@@ -1,13 +1,12 @@
 package com.marcel.mycompany.screens.workers
 
 import android.app.Application
-import android.util.Log
-import android.view.View
 import android.widget.Toast
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.marcel.mycompany.Event
+import com.marcel.mycompany.screens.workers.repository.RepositoryCl
 import es.dmoral.toasty.Toasty
 import kotlinx.coroutines.Deferred
 import kotlinx.coroutines.runBlocking
@@ -39,7 +38,9 @@ class WorkersViewModel(application: Application) : AndroidViewModel(application)
 
     var application1 = application
     var checked = MutableLiveData<Boolean>()
-    val repository = RepositoryCl(application)
+    val repository :RepositoryCl by lazy {
+        RepositoryCl(application)
+    }
     private var allWorkers: Deferred<LiveData<List<Worker>>> = repository.getAllWorkers()
     init {
     checked=repository.getSwitchState()

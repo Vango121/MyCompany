@@ -1,8 +1,7 @@
-package com.marcel.mycompany.screens.workers
+package com.marcel.mycompany.screens.workers.dialog
 
 import android.app.AlertDialog
 import android.app.Dialog
-import android.content.Context
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.DialogFragment
@@ -10,6 +9,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.marcel.mycompany.R
+import com.marcel.mycompany.screens.workers.Worker
 import kotlinx.android.synthetic.main.dialog_presence.view.*
 
 class AddButtonDialog :  DialogFragment(){

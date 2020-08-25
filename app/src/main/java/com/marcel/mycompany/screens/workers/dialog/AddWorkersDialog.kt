@@ -1,8 +1,7 @@
-package com.marcel.mycompany.screens.workers
+package com.marcel.mycompany.screens.workers.dialog
 
 import android.app.AlertDialog
 import android.app.Dialog
-import android.content.DialogInterface
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
@@ -10,6 +9,7 @@ import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.marcel.mycompany.R
+import com.marcel.mycompany.screens.workers.Worker
 import es.dmoral.toasty.Toasty
 import kotlinx.android.synthetic.main.dialog_addworker.view.*
 
@@ -18,7 +18,7 @@ class AddWorkersDialog :  DialogFragment() {
     val workerInfo : LiveData<Worker>
     get() = _workerInfo
 
-    lateinit var worker:Worker
+    lateinit var worker: Worker
     lateinit var v: View
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
@@ -56,7 +56,7 @@ class AddWorkersDialog :  DialogFragment() {
         val surname= v.editTextSurname?.text.toString()
         val money = v.editTextMoney?.text.toString()
         if(!name.equals("") && !surname.equals("") && !money.equals("")){
-            worker=Worker(name,surname,money.toDouble())
+            worker= Worker(name,surname,money.toDouble())
             _workerInfo.value=worker
             dismiss()
         }

@@ -1,13 +1,13 @@
-package com.marcel.mycompany.screens.workers
+package com.marcel.mycompany.screens.workers.repository
 
 import android.app.Application
-import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.marcel.mycompany.screens.workers.Worker
 import kotlinx.coroutines.*
 
-class RepositoryCl (val application: Application):Repository {
-    private val shared:SharedPreferences = SharedPreferences()
+class RepositoryCl (val application: Application): Repository {
+    private val shared: SharedPreferences = SharedPreferences()
     private var workersDao: WorkersDao
     init {
         val database = WorkersDatabase.getInstance(application.applicationContext)

@@ -1,7 +1,8 @@
-package com.marcel.mycompany.screens.workers
+package com.marcel.mycompany.screens.workers.dialog
 
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.marcel.mycompany.screens.workers.Worker
 
 class PaymentDialogRVAdapter :RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private var workers: List<Worker> = ArrayList()

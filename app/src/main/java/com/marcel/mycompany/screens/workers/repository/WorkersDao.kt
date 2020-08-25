@@ -1,7 +1,8 @@
-package com.marcel.mycompany.screens.workers
+package com.marcel.mycompany.screens.workers.repository
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
+import com.marcel.mycompany.screens.workers.Worker
 
 @Dao
 interface WorkersDao {

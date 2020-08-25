@@ -1,13 +1,12 @@
-package com.marcel.mycompany.screens.workers
+package com.marcel.mycompany.screens.workers.dialog
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.marcel.mycompany.R
-import kotlinx.android.synthetic.main.remove_worker_row.view.*
+import com.marcel.mycompany.screens.workers.Worker
 
 class DeleteWorkerRVAdapter(val onNoteListener: OnNoteListener): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private var workers: List<Worker> = ArrayList()

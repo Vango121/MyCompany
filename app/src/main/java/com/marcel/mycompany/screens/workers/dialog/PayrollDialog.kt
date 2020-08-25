@@ -1,16 +1,14 @@
-package com.marcel.mycompany.screens.workers
+package com.marcel.mycompany.screens.workers.dialog
 
 import android.app.AlertDialog
 import android.app.Dialog
-import android.content.Context
 import android.os.Bundle
 import android.view.View
-import androidx.core.content.ContextCompat
 import androidx.fragment.app.DialogFragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.marcel.mycompany.R
+import com.marcel.mycompany.screens.workers.Worker
 import kotlinx.android.synthetic.main.dialog_payroll.view.*
-import kotlinx.android.synthetic.main.dialog_removeworker.view.*
 
 class PayrollDialog :  DialogFragment() {
     lateinit var v: View

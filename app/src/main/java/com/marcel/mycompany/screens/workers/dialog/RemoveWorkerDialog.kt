@@ -1,4 +1,4 @@
-package com.marcel.mycompany.screens.workers
+package com.marcel.mycompany.screens.workers.dialog
 
 import android.app.AlertDialog
 import android.app.Dialog
@@ -10,6 +10,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.marcel.mycompany.R
+import com.marcel.mycompany.screens.workers.Worker
 import kotlinx.android.synthetic.main.dialog_removeworker.view.*
 
 class RemoveWorkerDialog() :  DialogFragment(), DeleteWorkerRVAdapter.OnNoteListener {
@@ -19,7 +20,7 @@ class RemoveWorkerDialog() :  DialogFragment(), DeleteWorkerRVAdapter.OnNoteList
         get() = _workertoRemove
 
     var workerList: List<Worker> = ArrayList()
-    lateinit var worker:Worker
+    lateinit var worker: Worker
     var workerAdapter : DeleteWorkerRVAdapter = DeleteWorkerRVAdapter(this)
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {

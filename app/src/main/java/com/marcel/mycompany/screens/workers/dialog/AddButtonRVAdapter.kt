@@ -1,4 +1,4 @@
-package com.marcel.mycompany.screens.workers
+package com.marcel.mycompany.screens.workers.dialog
 
 import android.util.Log
 import android.view.LayoutInflater
@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.marcel.mycompany.R
+import com.marcel.mycompany.screens.workers.Worker
 import kotlinx.android.synthetic.main.presence_workers_row.view.*
 
 class AddButtonRVAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -35,7 +36,7 @@ class AddButtonRVAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        (holder as AddButtonRVAdapter.AddButtonViewHoler).initializeUiCompontnt(workers?.get(position)?.name+" "+ workers?.get(position)?.surName)
+        (holder as AddButtonViewHoler).initializeUiCompontnt(workers?.get(position)?.name+" "+ workers?.get(position)?.surName)
     }
     inner class AddButtonViewHoler(var view: View) : RecyclerView.ViewHolder(view),View.OnClickListener{
         var textViewName = view.textViewRowWorkerName
