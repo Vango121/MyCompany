@@ -21,7 +21,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
+            android:layout_marginEnd="5dp"
             android:textSize="15sp"
+            android:inputType="number"
             android:layout_toEndOf="@+id/textViewRowWorker"
             android:hint="@string/advance" />
 

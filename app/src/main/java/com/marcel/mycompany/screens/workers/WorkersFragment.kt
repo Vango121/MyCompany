@@ -69,6 +69,7 @@ class WorkersFragment : Fragment() {
         removeWorkerDialog.addData(it)
             addButtonDialog.addData(it)
             payrollDialog.addData(it)
+            paymentDialog.addData(it)
             var total_amount=0.0
             for (person:Worker in it){
                total_amount+= (person.hours*person.money)-person.advance
@@ -121,6 +122,11 @@ class WorkersFragment : Fragment() {
         viewModel.payment.observe(viewLifecycleOwner, Observer {
             it.getContentIfNotHandled()?.let {
                 paymentDialog.show(parentFragmentManager,it)
+            }
+        })
+        paymentDialog.workertoUpdate.observe(viewLifecycleOwner, Observer {
+            for (person : Worker in it){
+                viewModel.updateWorker(person)
             }
         })
         return binding.root
