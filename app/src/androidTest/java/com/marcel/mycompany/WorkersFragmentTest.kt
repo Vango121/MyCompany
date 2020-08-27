@@ -8,8 +8,11 @@ import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.action.ViewActions.typeText
 import androidx.test.espresso.assertion.ViewAssertions.doesNotExist
 import androidx.test.espresso.assertion.ViewAssertions.matches
+import androidx.test.espresso.contrib.RecyclerViewActions.actionOnItemAtPosition
 import androidx.test.espresso.matcher.ViewMatchers.*
 import com.marcel.mycompany.screens.workers.WorkersFragment
+import com.marcel.mycompany.screens.workers.dialog.DeleteWorkerRVAdapter
+import com.marcel.mycompany.screens.workers.dialog.DeleteWorkerRVAdapter.WorkerViewHolder
 import org.junit.Test
 
 
@@ -46,10 +49,33 @@ class WorkersFragmentTest{
         val scenario = launchFragmentInContainer<WorkersFragment>()
         onView(withId(R.id.imageView2)).perform(click())
         onView(withId(R.id.dialogBar)).check(matches(withText(R.string.add_worker)))
-        onView(withId(R.id.editTextName)).perform(typeText("Marcel"))
-        onView(withId(R.id.editTextSurname)).perform(typeText("Barski"))
+        onView(withId(R.id.editTextName)).perform(typeText("Test"))
+        onView(withId(R.id.editTextSurname)).perform(typeText("No"))
         onView(withId(R.id.editTextMoney)).perform(typeText("12"))
+        onView(withText("OK")).perform(click())
+
+        //not filled all fields
+        onView(withId(R.id.imageView2)).perform(click())
+        onView(withId(R.id.dialogBar)).check(matches(withText(R.string.add_worker)))
+        onView(withId(R.id.editTextName)).perform(typeText("Marcel"))
+        onView(withText("OK")).perform(click())
+        onView(withText(R.string.complete_allFields_dialog))
+            .inRoot(ToastMatcher())
+            .check(matches(isDisplayed()))
+    }
+
+    // test delete worker
+    @Test
+    fun test_deleteWorker(){
+        val scenario = launchFragmentInContainer<WorkersFragment>()
+        onView(withId(R.id.imageView3)).perform(click())
+        onView(withId(R.id.dialogBar)).check(matches(withText(R.string.remove_worker)))
+        onView(withId(R.id.recycler_view_workerlist_remove)).check(matches(isDisplayed()))
+        onView(withText("Test No")).check(matches(isDisplayed()))
+        onView(withId(R.id.recycler_view_workerlist_remove)).perform(actionOnItemAtPosition<WorkerViewHolder>(3, click()))
+        onView(withText("Test No")).check(doesNotExist())
         onView(withText(R.string.cancel)).perform(click())
+
     }
     @Test
     fun test_payroll(){
