@@ -1,6 +1,7 @@
 package com.marcel.mycompany.screens.workers
 
 import android.app.Application
+import android.util.Log
 import android.widget.Toast
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
@@ -44,6 +45,7 @@ class WorkersViewModel(application: Application) : AndroidViewModel(application)
     private var allWorkers: Deferred<LiveData<List<Worker>>> = repository.getAllWorkers()
     init {
     checked=repository.getSwitchState()
+        Log.i("vm","created")
     }
     fun saveSwitchState(){
         repository.saveSwitchState( checked.value!!)

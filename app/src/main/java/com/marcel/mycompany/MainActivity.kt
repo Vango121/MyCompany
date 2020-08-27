@@ -2,6 +2,7 @@ package com.marcel.mycompany
 
 
 import android.os.Bundle
+import android.util.Log
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
@@ -21,18 +22,22 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
          val view = binding.root
         setContentView(view)
+//        if(savedInstanceState==null){
+//            supportFragmentManager.commit {
+//                setCustomAnimations(
+//                    R.anim.slide_in,
+//                    R.anim.fade_out,
+//                    R.anim.fade_in,
+//                    R.anim.slide_out
+//                )
+//                add(R.id.host_fragment,Mainfragment())
+//                addToBackStack(Mainfragment().javaClass.name)
+//            }
+//        }
         if(savedInstanceState==null){
-            supportFragmentManager.commit {
-                setCustomAnimations(
-                    R.anim.slide_in,
-                    R.anim.fade_out,
-                    R.anim.fade_in,
-                    R.anim.slide_out
-                )
-                add(R.id.host_fragment,Mainfragment())
-                addToBackStack("main")
-            }
+            changeFragment(Mainfragment())
         }
+
 
         binding.bottomNavigation.setOnNavigationItemSelectedListener { item: MenuItem ->
             when(item.itemId){
@@ -48,7 +53,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.finances ->{
 
                     if(!finances) {
-                    changeFragment(FinancesFragment())
+                        changeFragment(FinancesFragment())
                     }
                     finances=true
                     home=false
@@ -102,17 +107,29 @@ class MainActivity : AppCompatActivity() {
         }
         super.onBackPressed()
     }
-
     fun changeFragment( className:Fragment){
-        supportFragmentManager.commit {
-            setCustomAnimations(
-                R.anim.slide_in,
-                R.anim.fade_out,
-                R.anim.fade_in,
-                R.anim.slide_out
-            )
-            replace(R.id.host_fragment, className)
-            addToBackStack(className.javaClass.name)
+//        supportFragmentManager.commit {
+//            setCustomAnimations(
+//                R.anim.slide_in,
+//                R.anim.fade_out,
+//                R.anim.fade_in,
+//                R.anim.slide_out
+//            )
+//            replace(R.id.host_fragment, className,className.javaClass.name)
+//            addToBackStack(className.javaClass.name)
+//        }
+        val fragmentpop : Boolean = supportFragmentManager.popBackStackImmediate(className.javaClass.name,0)
+        if(!fragmentpop){
+            supportFragmentManager.commit {
+                setCustomAnimations(
+                    R.anim.slide_in,
+                    R.anim.fade_out,
+                    R.anim.fade_in,
+                    R.anim.slide_out
+                )
+                replace(R.id.host_fragment, className,className.javaClass.name)
+                addToBackStack(className.javaClass.name)
+            }
         }
     }
 }

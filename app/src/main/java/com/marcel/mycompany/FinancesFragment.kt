@@ -2,6 +2,7 @@ package com.marcel.mycompany
 
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.MenuItem
@@ -28,12 +29,12 @@ class FinancesFragment : Fragment() {
         val binding: FinancesFragmentBinding =
             DataBindingUtil.inflate(inflater,R.layout.finances_fragment,container,false)
 
-
         return binding.root
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+
         viewModel = ViewModelProvider(this).get(FinancesViewModel::class.java)
         // TODO: Use the ViewModel
     }
