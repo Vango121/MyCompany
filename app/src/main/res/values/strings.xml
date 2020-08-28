@@ -30,4 +30,13 @@
     <string name="select_all">Select All</string>
     <string name="close">Close</string>
     <string name="withdraw_all">Withdraw all</string>
+    <string name="add_workerDescr">Here you can add new worker to database</string>
+    <string name="remove_workerDescr">Here you can remove worker from database</string>
+    <string name="workStartTime">Start time of work</string>
+    <string name="workStartTimeDescr">Enter the start time of work using the 24 hour clock displayed after pressing the field</string>
+    <string name="workEndTime">Time of the end of work</string>
+    <string name="workEndTImeDescr">Enter the end time of work using the 24 hour clock displayed after pressing the field</string>
+    <string name="buttonAddHrsDescr">After completing work time click here to pick present workers</string>
+    <string name="buttonAddHrs">Button Add</string>
+    <string name="textViewTitleMoney">Workers sum of earnings</string>
 </resources>

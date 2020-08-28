@@ -7,6 +7,7 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.marcel.mycompany.Event
+import com.marcel.mycompany.ShowCaseModel
 import com.marcel.mycompany.screens.workers.repository.RepositoryCl
 import es.dmoral.toasty.Toasty
 import kotlinx.coroutines.Deferred
@@ -39,16 +40,21 @@ class WorkersViewModel(application: Application) : AndroidViewModel(application)
 
     var application1 = application
     var checked = MutableLiveData<Boolean>()
+    var showCaseState = MutableLiveData<Boolean>()
     val repository :RepositoryCl by lazy {
         RepositoryCl(application)
     }
     private var allWorkers: Deferred<LiveData<List<Worker>>> = repository.getAllWorkers()
     init {
-    checked=repository.getSwitchState()
-        Log.i("vm","created")
+        checked=repository.getSwitchState()
+        showCaseState= repository.getShowCaseState()
     }
     fun saveSwitchState(){
         repository.saveSwitchState( checked.value!!)
+    }
+    fun saveShowCaseState(){ // save if executed only true
+        repository.saveShowCaseState(true)
+        showCaseState.value=true
     }
     fun userClicksOnButton() { // add worker button click
         _navigateToDialog.value =
@@ -100,4 +106,5 @@ class WorkersViewModel(application: Application) : AndroidViewModel(application)
     fun payment(){
         _payment.value=Event("Payment")
     }
+
 }

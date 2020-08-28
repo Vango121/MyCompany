@@ -30,4 +30,13 @@
     <string name="select_all">Zaznacz wszystkich</string>
     <string name="close">Zamknij</string>
     <string name="withdraw_all">Wypłać wszystko</string>
+    <string name="add_workerDescr">Tutaj możesz dodać nowego pracownika do bazy danych</string>
+    <string name="remove_workerDescr">Tutaj możesz usunąć pracownika z bazy danych</string>
+    <string name="workStartTime">Godzina rozpoczęcia pracy</string>
+    <string name="workStartTimeDescr">Wprowadz godzinę rozpoczęcia pracy korzystając z 24 godzinnego zegara wyświetlonego po naciśnięciu pola</string>
+    <string name="workEndTime">Godzina zakończenia pracy</string>
+    <string name="workEndTImeDescr">Wprowadz godzinę zakończenia pracy korzystając z 24 godzinnego zegara wyświetlonego po naciśnięciu pola</string>
+    <string name="buttonAddHrsDescr">Po uzupełnieniu czasu pracy naciśnij ten przycisk, aby wybrać obecnych pracowników</string>
+    <string name="buttonAddHrs">Przycisk dodaj</string>
+    <string name="textViewTitleMoney">Suma zarobionych pieniędzy przez pracowników</string>
 </resources>

@@ -50,4 +50,11 @@ class RepositoryCl (val application: Application): Repository {
             workersDao.deleteAllRows()
         }
     }
+
+    override fun saveShowCaseState(boolean: Boolean) {
+        shared.saveShowCaseState(application.applicationContext,boolean)
+    }
+
+    override fun getShowCaseState(): MutableLiveData<Boolean> = shared.getShowCaseState(application.applicationContext)
+
 }
