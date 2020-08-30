@@ -2,7 +2,6 @@ package com.marcel.mycompany
 
 
 import android.os.Bundle
-import android.util.Log
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
@@ -22,28 +21,20 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
          val view = binding.root
         setContentView(view)
-//        if(savedInstanceState==null){
-//            supportFragmentManager.commit {
-//                setCustomAnimations(
-//                    R.anim.slide_in,
-//                    R.anim.fade_out,
-//                    R.anim.fade_in,
-//                    R.anim.slide_out
-//                )
-//                add(R.id.host_fragment,Mainfragment())
-//                addToBackStack(Mainfragment().javaClass.name)
-//            }
-//        }
+        val mainfragment = Mainfragment()
+        val financesFragment= FinancesFragment()
+        val workersFragment = WorkersFragment()
         if(savedInstanceState==null){
-            changeFragment(Mainfragment())
+            changeFragment(mainfragment)
         }
+
 
 
         binding.bottomNavigation.setOnNavigationItemSelectedListener { item: MenuItem ->
             when(item.itemId){
                 R.id.home -> {
                     if(!home){
-                    changeFragment(Mainfragment())
+                    changeFragment(mainfragment)
                         finances = false
                         home = true
                         workers=false
@@ -53,7 +44,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.finances ->{
 
                     if(!finances) {
-                        changeFragment(FinancesFragment())
+                        changeFragment(financesFragment)
                     }
                     finances=true
                     home=false
@@ -64,7 +55,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.workers ->{
 
                     if(!workers) {
-                        changeFragment(WorkersFragment())
+                        changeFragment(workersFragment)
                     }
                     finances=false
                     home=false

@@ -26,9 +26,9 @@ class SharedPreferences {
 
     }
     fun getShowCaseState(context: Context): MutableLiveData<Boolean>{
-        var data=MutableLiveData<Boolean>()
+        val data=MutableLiveData<Boolean>()
         val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context.applicationContext)
-        var value=sharedPreferences.getBoolean("workersShowCaseState",DEFAULT_SHOW_CASE_STATE)
+        val value=sharedPreferences.getBoolean("workersShowCaseState",DEFAULT_SHOW_CASE_STATE)
         data.value= value
         return data
     }

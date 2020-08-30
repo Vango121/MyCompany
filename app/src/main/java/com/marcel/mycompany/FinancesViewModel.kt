@@ -5,7 +5,9 @@ import androidx.lifecycle.ViewModel
 
 class FinancesViewModel : ViewModel() {
     init {
-        Log.i("vmf","created")
+
     }
-    // TODO: Implement the ViewModel
+    fun e(){
+
+    }
 }

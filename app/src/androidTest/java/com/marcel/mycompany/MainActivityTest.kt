@@ -33,7 +33,7 @@ class MainActivityTest {
     fun test_BottomNavigationWorkers() {
         val activityScenario= ActivityScenario.launch(MainActivity::class.java)
         onView(withId(R.id.workers)).perform(click())
-        onView(withId(R.id.workersfragment)).check(matches(isDisplayed()))
+        onView(withId(R.id.scrollView1)).check(matches(isDisplayed()))
         pressBack()
         onView(withId(R.id.mainFragment)).check(matches(isDisplayed()))
     }

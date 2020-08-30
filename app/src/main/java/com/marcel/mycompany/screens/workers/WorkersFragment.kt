@@ -1,6 +1,7 @@
 package com.marcel.mycompany.screens.workers
 
 import android.app.TimePickerDialog
+import android.graphics.Rect
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,11 +9,12 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.marcel.mycompany.R
-import com.marcel.mycompany.databinding.WorkersFragmentBinding
 import com.marcel.mycompany.ShowCaseModel
+import com.marcel.mycompany.databinding.WorkersFragmentBinding
 import com.marcel.mycompany.screens.workers.dialog.*
 import es.dmoral.toasty.Toasty
 import io.reactivex.rxjava3.subjects.PublishSubject
@@ -26,7 +28,7 @@ import java.util.*
 class WorkersFragment : Fragment() {
 
     private lateinit var binding: WorkersFragmentBinding
-    private lateinit var viewModel: WorkersViewModel
+    private val viewModel: WorkersViewModel by viewModels()
     private var workersHrs: Double = 0.0
 
     override fun onCreateView(
@@ -43,7 +45,7 @@ class WorkersFragment : Fragment() {
         val addButtonDialog = AddButtonDialog() // dialog on add button click
         val payrollDialog = PayrollDialog() // payroll dialog class
         val paymentDialog = PaymentDialog()
-            viewModel = ViewModelProvider(this).get(WorkersViewModel::class.java)
+
         //val viewModel: WorkersViewModel by viewModels()
             binding.workersViewModel=viewModel
             viewModel.navigateToDialog.observe(viewLifecycleOwner, {
@@ -150,8 +152,8 @@ class WorkersFragment : Fragment() {
         })
 
         //check if showcase was already displayed
-        viewModel.showCaseState.observe(viewLifecycleOwner,{
-            if(!it){
+        viewModel.showCaseState.observe(viewLifecycleOwner, {
+            if (!it) {
                 showCaseView()
                 viewModel.saveShowCaseState()
                 viewModel
@@ -223,6 +225,17 @@ class WorkersFragment : Fragment() {
             binding.button2.isEnabled=false
         }
     }
+    private fun isViewVisible(view: View): Boolean {
+        val scrollBounds = Rect()
+        binding.scrollView1.getDrawingRect(scrollBounds)
+        val top = view.y
+        val bottom = top + view.height
+        return if (scrollBounds.top < top && scrollBounds.bottom > bottom) {
+            true
+        } else {
+            false
+        }
+    }
 fun showCaseView(){
 
     var i =0
@@ -272,6 +285,9 @@ fun showCaseView(){
     list.add(modelMoney)
     val mObservable: Subject<ShowCaseModel> = PublishSubject.create()
     mObservable.subscribe{
+        if(!isViewVisible(it.view)){
+            binding.scrollView1.scrollTo(0,binding.scrollView1.bottom)
+        }
         GuideView.Builder(context)
             .setTitle(it.title)
             .setContentText(it.content)

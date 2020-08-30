@@ -9,6 +9,7 @@ import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import com.marcel.mycompany.databinding.FinancesFragmentBinding
@@ -20,23 +21,17 @@ class FinancesFragment : Fragment() {
         fun newInstance() = FinancesFragment()
     }
 
-    private lateinit var viewModel: FinancesViewModel
 
+    private val viewModel: FinancesViewModel by viewModels()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         val binding: FinancesFragmentBinding =
             DataBindingUtil.inflate(inflater,R.layout.finances_fragment,container,false)
-
+      viewModel.e()
         return binding.root
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-
-        viewModel = ViewModelProvider(this).get(FinancesViewModel::class.java)
-        // TODO: Use the ViewModel
-    }
 
 }
