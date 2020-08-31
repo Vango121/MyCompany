@@ -39,4 +39,5 @@
     <string name="buttonAddHrsDescr">After completing work time click here to pick present workers</string>
     <string name="buttonAddHrs">Button Add</string>
     <string name="textViewTitleMoney">Workers sum of earnings</string>
+    <string name="buttonPayrollDescr">Here u can check workers payroll with advances, hours and summary</string>
 </resources>

@@ -4,13 +4,17 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import androidx.room.TypeConverters
+import com.marcel.mycompany.Converters
+import com.marcel.mycompany.screens.workers.Payroll
 import com.marcel.mycompany.screens.workers.Worker
 
-@Database(entities = [Worker::class], version = 4,exportSchema = true)
+@Database(entities = [Worker::class, Payroll::class], version = 5,exportSchema = true)
+@TypeConverters(Converters::class)
 abstract class WorkersDatabase : RoomDatabase() {
 
     abstract fun workerDao() : WorkersDao
-
+    abstract fun payrollDao():PayrollDao
     companion object{
         private var instance: WorkersDatabase? = null
         fun getInstance(context: Context): WorkersDatabase?{
@@ -18,8 +22,7 @@ abstract class WorkersDatabase : RoomDatabase() {
                 instance = Room.databaseBuilder(
                     context,
                     WorkersDatabase::class.java,
-                    "workers_table")
-
+                    "workers_db")
                     .fallbackToDestructiveMigration()
                     .build()
             }

@@ -3,6 +3,7 @@ package com.marcel.mycompany.screens.workers.repository
 import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.marcel.mycompany.screens.workers.Payroll
 import com.marcel.mycompany.screens.workers.Worker
 import kotlinx.coroutines.Deferred
 
@@ -16,4 +17,9 @@ interface Repository {
     fun deleteAllWorkers()
     fun saveShowCaseState(boolean: Boolean)
     fun getShowCaseState(): MutableLiveData<Boolean>
+    fun insertPayroll(payroll:Payroll)
+    fun updatePayroll(payroll:Payroll)
+    fun deletePayroll(payroll:Payroll)
+    fun getAllPayroll() : Deferred<LiveData<List<Payroll>>>
+    fun deleteAllPayroll()
 }

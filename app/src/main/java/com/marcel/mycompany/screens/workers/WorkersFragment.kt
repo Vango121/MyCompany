@@ -275,6 +275,16 @@ fun showCaseView(){
         "",
         binding.textView2
     )
+    val modelPayroll= ShowCaseModel(
+        getString(R.string.check_payment_List),
+        getString(R.string.buttonPayrollDescr),
+        binding.buttonPayroll
+    )
+    val modelPayment= ShowCaseModel(
+        getString(R.string.check_payment_List),
+        "",
+        binding.buttonPayments
+    )
 
     list.add(model)
     list.add(modelRemove)
