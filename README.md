@@ -10,6 +10,7 @@ Application managing the company (Work in Progress)
 - Kotlin coroutines
 - Espresso
 - Recycler View 
+- RxKotlin
 
 #### Screen shots
 ![main](http://hackheroes.cba.pl/imggit/workersmain.png)
