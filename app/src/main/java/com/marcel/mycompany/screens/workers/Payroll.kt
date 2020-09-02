@@ -4,7 +4,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity(tableName = "payroll_table")
-data class Payroll(val workers:ArrayList<Worker>,val data:String) {
+data class Payroll(val workers:List<Worker>,val data:String) {
     @PrimaryKey(autoGenerate = true)
     var payroll_id:Int =0
 }

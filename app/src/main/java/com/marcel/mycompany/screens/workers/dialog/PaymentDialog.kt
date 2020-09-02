@@ -12,6 +12,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.marcel.mycompany.R
 import com.marcel.mycompany.screens.workers.Worker
+import com.marcel.mycompany.screens.workers.dialog.adapters.PaymentDialogRVAdapter
 import kotlinx.android.synthetic.main.dialog_payment.view.*
 
 class PaymentDialog :DialogFragment() {
@@ -22,6 +23,7 @@ class PaymentDialog :DialogFragment() {
     private var _workertoUpdate = MutableLiveData<List<Worker>>()
     val workertoUpdate : LiveData<List<Worker>>
         get() = _workertoUpdate
+    var withdrawAll = MutableLiveData<Boolean>()
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         v= layoutInflater.inflate(R.layout.dialog_payment, null)
         v.recycler_view_workers_payment.apply {
@@ -36,8 +38,10 @@ class PaymentDialog :DialogFragment() {
                     paymentAdapter.clearList()
                 }
                 .setNegativeButton(getString(R.string.withdraw_all)){ dialog, id ->
+                    withdrawAll.value=true
                     _workertoUpdate.value=paymentAdapter.withdrawall()
                     paymentAdapter.clearList()
+
                 }
                 a= builder.create()
            a

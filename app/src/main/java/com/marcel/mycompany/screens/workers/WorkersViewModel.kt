@@ -25,7 +25,9 @@ class WorkersViewModel(application: Application) : AndroidViewModel(application)
     private val _navigateToRemoveDialog = MutableLiveData<Event<String>>()
     val navigateToRemoveDialog : LiveData<Event<String>>
         get() = _navigateToRemoveDialog
-
+    private val _navigateToEditDialog = MutableLiveData<Event<String>>()
+    val navigateToEditDialog : LiveData<Event<String>>
+        get() = _navigateToEditDialog
 
     private val _addButton = MutableLiveData<Event<String>>()
     val addButton : LiveData<Event<String>>
@@ -64,6 +66,20 @@ class WorkersViewModel(application: Application) : AndroidViewModel(application)
         _navigateToRemoveDialog.value =
             Event("removeWorker")  // Trigger the event by setting a new Event as a new value
     }
+    fun userClicksOnEditButton() { // Editworker button click
+        _navigateToEditDialog.value =
+            Event("editWorker")  // Trigger the event by setting a new Event as a new value
+    }
+
+    fun addButton(){ // add button ui method
+        _addButton.value=Event("AddButton")
+    }
+    fun payroll(){
+        _payroll.value=Event("Payroll")
+    }
+    fun payment(){
+        _payment.value=Event("Payment")
+    }
     fun getAllWorkers() : LiveData<List<Worker>> = runBlocking {
         allWorkers.await()
     }
@@ -76,16 +92,19 @@ class WorkersViewModel(application: Application) : AndroidViewModel(application)
     fun updateWorker(worker: Worker){
         repository.updateWorker(worker)
     }
+    fun insertPayroll(payroll: Payroll){
+        repository.insertPayroll(payroll)
+    }
     fun calcHours(start:String, end: String): Double{
-        val format = SimpleDateFormat("HH:mm")
-        val date1: Date = format.parse(start)
-        val date2: Date = format.parse(end)
+        val format = SimpleDateFormat("HH:mm",Locale.getDefault())
+        val date1: Date = format.parse(start)!!
+        val date2: Date = format.parse(end)!!
         val difference = date2.time - date1.time
 
-        var diffInHrs = ((difference / (1000*60*60)) % 24)
+        val diffInHrs = ((difference / (1000*60*60)) % 24)
         val diffInMin=((difference / (1000*60)) % 60) - diffInHrs*60
-        var hrsWorked: Double
-        if(diffInMin>30&&diffInMin<50){
+        val hrsWorked: Double
+        if(diffInMin in 31..49){
             hrsWorked=diffInHrs+0.5
         }else if (diffInMin>=50){
             hrsWorked= (diffInHrs+1).toDouble()
@@ -96,15 +115,17 @@ class WorkersViewModel(application: Application) : AndroidViewModel(application)
         application1.applicationContext?.let { Toasty.info(it,"Hours worked $hrsWorked", Toast.LENGTH_SHORT,true).show() }
         return hrsWorked
     }
-
-    fun addButton(){ // add button ui method
-        _addButton.value=Event("AddButton")
+    fun getCurrentDate():String{
+        val c = Calendar.getInstance().time
+        val df = SimpleDateFormat("dd-MMM-yyyy", Locale.getDefault())
+        return df.format(c)
     }
-    fun payroll(){
-        _payroll.value=Event("Payroll")
-    }
-    fun payment(){
-        _payment.value=Event("Payment")
+    fun calcTotalAmount(list:List<Worker>):Double{ // calc earned money by workers to display it on worker screen
+        var total_amount =0.0
+        for (person: Worker in list) {
+            total_amount += (person.hours * person.money) - person.advance
+        }
+        return total_amount
     }
 
 }

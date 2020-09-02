@@ -8,11 +8,12 @@ import androidx.fragment.app.DialogFragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.marcel.mycompany.R
 import com.marcel.mycompany.screens.workers.Worker
+import com.marcel.mycompany.screens.workers.dialog.adapters.PayRollRVAdapter
 import kotlinx.android.synthetic.main.dialog_payroll.view.*
 
 class PayrollDialog :  DialogFragment() {
-    lateinit var v: View
-    var workerAdapter : PayRollRVAdapter = PayRollRVAdapter()
+    private lateinit var v: View
+    private var workerAdapter : PayRollRVAdapter = PayRollRVAdapter()
     var workerList: List<Worker> = ArrayList()
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         v = layoutInflater.inflate(R.layout.dialog_payroll,null)

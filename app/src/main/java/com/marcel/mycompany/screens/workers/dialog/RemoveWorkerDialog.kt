@@ -11,6 +11,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.marcel.mycompany.R
 import com.marcel.mycompany.screens.workers.Worker
+import com.marcel.mycompany.screens.workers.dialog.adapters.DeleteWorkerRVAdapter
 import kotlinx.android.synthetic.main.dialog_removeworker.view.*
 
 class RemoveWorkerDialog() :  DialogFragment(), DeleteWorkerRVAdapter.OnNoteListener {
@@ -19,7 +20,7 @@ class RemoveWorkerDialog() :  DialogFragment(), DeleteWorkerRVAdapter.OnNoteList
     val workerToRemove : LiveData<Worker>
         get() = _workertoRemove
 
-    var workerList: List<Worker> = ArrayList()
+    private var workerList: List<Worker> = ArrayList()
     lateinit var worker: Worker
     var workerAdapter : DeleteWorkerRVAdapter = DeleteWorkerRVAdapter(this)
 

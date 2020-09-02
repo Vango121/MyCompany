@@ -10,6 +10,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.marcel.mycompany.R
 import com.marcel.mycompany.screens.workers.Worker
+import com.marcel.mycompany.screens.workers.dialog.adapters.AddButtonRVAdapter
 import kotlinx.android.synthetic.main.dialog_presence.view.*
 
 class AddButtonDialog :  DialogFragment(){
@@ -25,7 +26,7 @@ class AddButtonDialog :  DialogFragment(){
             adapter=addButtonAdapter
         }
         return activity.let {
-            var builder =AlertDialog.Builder(it,R.style.DialogTheme)
+            val builder =AlertDialog.Builder(it,R.style.DialogTheme)
             builder
                 .setView(view)
                 .setNegativeButton(getString(R.string.select_all)

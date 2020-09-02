@@ -7,14 +7,14 @@ import com.marcel.mycompany.screens.workers.Worker
 
 class Converters {
     @TypeConverter
-    fun convertListOfWorkers(list: ArrayList<Worker>):String{
-        val gson:Gson= Gson()
+    fun convertListOfWorkers(list: List<Worker>):String{
+        val gson = Gson()
         val converted = gson.toJson(list)
         return converted
     }
    @TypeConverter
-   fun jsonToListWorkers(json: String):ArrayList<Worker>{
-       val listType = object : TypeToken<ArrayList<String?>?>() {}.type
+   fun jsonToListWorkers(json: String):List<Worker>{
+       val listType = object : TypeToken<List<String?>?>() {}.type
        return Gson().fromJson(json,listType)
    }
 }

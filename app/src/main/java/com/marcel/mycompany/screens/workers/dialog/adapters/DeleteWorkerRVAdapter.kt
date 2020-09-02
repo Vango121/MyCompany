@@ -1,4 +1,4 @@
-package com.marcel.mycompany.screens.workers.dialog
+package com.marcel.mycompany.screens.workers.dialog.adapters
 
 import android.view.LayoutInflater
 import android.view.View
@@ -26,7 +26,7 @@ class DeleteWorkerRVAdapter(val onNoteListener: OnNoteListener): RecyclerView.Ad
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        (holder as WorkerViewHolder).initializeUiCompontnt(workers?.get(position)?.name+" "+ workers?.get(position)?.surName)
+        (holder as WorkerViewHolder).initializeUiCompontnt(workers.get(position).name +" "+ workers.get(position).surName)
 
     }
     inner class WorkerViewHolder(var view: View, val onNoteListener: OnNoteListener)

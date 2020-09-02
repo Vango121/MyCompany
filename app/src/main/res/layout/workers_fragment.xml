@@ -130,7 +130,8 @@
             app:layout_constraintEnd_toStartOf="@+id/imageView3"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/guidelineFirst" />
+            app:layout_constraintTop_toBottomOf="@+id/guidelineFirst"
+            android:contentDescription="@string/manage_workers" />
 
         <ImageView
             android:id="@+id/imageView3"
@@ -143,7 +144,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/imageView2"
-            app:layout_constraintTop_toBottomOf="@+id/guidelineFirst" />
+            app:layout_constraintTop_toBottomOf="@+id/guidelineFirst"
+            android:contentDescription="@string/manage_workers" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline3"
@@ -159,11 +161,13 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:src="@drawable/worker"
+            android:onClick="@{()-> workersViewModel.userClicksOnEditButton()}"
             app:layout_constraintBottom_toTopOf="@+id/guideline4"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textViewEdit" />
+            app:layout_constraintTop_toBottomOf="@+id/textViewEdit"
+            android:contentDescription="@string/edit_contracts_workers" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline4"
@@ -182,10 +186,12 @@
             android:backgroundTint="@color/tint"
             android:ems="10"
             android:focusable="false"
+            android:importantForAutofill="no"
             android:inputType="none"
             app:layout_constraintEnd_toStartOf="@+id/editTextTime2"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textViewHours" />
+            app:layout_constraintTop_toBottomOf="@+id/textViewHours"
+            tools:ignore="LabelFor" />
 
         <EditText
             android:id="@+id/editTextTime2"
@@ -198,9 +204,11 @@
             android:ems="10"
             android:focusable="false"
             android:inputType="none"
+            android:importantForAutofill="no"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/editTextTime"
-            app:layout_constraintTop_toBottomOf="@+id/textViewHours" />
+            app:layout_constraintTop_toBottomOf="@+id/textViewHours"
+            tools:ignore="LabelFor" />
 
         <Switch
             android:id="@+id/switch1"
@@ -246,7 +254,8 @@
             android:layout_marginTop="15dp"
             android:src="@drawable/wallet"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textViewPay" />
+            app:layout_constraintTop_toBottomOf="@+id/textViewPay"
+            android:contentDescription="@string/sum_amount_workers" />
 
         <TextView
             android:id="@+id/textView2"

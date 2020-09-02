@@ -11,8 +11,7 @@ import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.contrib.RecyclerViewActions.actionOnItemAtPosition
 import androidx.test.espresso.matcher.ViewMatchers.*
 import com.marcel.mycompany.screens.workers.WorkersFragment
-import com.marcel.mycompany.screens.workers.dialog.DeleteWorkerRVAdapter
-import com.marcel.mycompany.screens.workers.dialog.DeleteWorkerRVAdapter.WorkerViewHolder
+import com.marcel.mycompany.screens.workers.dialog.adapters.DeleteWorkerRVAdapter.WorkerViewHolder
 import org.junit.Test
 
 

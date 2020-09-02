@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <TextView
+        android:id="@+id/dialogBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/edit_contracts_workers"
+        android:textSize="30sp"
+        android:gravity="center"
+        android:background="@color/textWorkers"
+        android:textColor="@color/white"
+        app:drawableStartCompat="@drawable/worker" />
+    <androidx.recyclerview.widget.RecyclerView
+        android:paddingTop="5dp"
+        android:id="@+id/recycler_view_workers_edit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/dialogBar"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        />
+</RelativeLayout>

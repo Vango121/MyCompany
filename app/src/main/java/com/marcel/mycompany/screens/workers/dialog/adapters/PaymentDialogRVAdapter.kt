@@ -1,18 +1,15 @@
-package com.marcel.mycompany.screens.workers.dialog
+package com.marcel.mycompany.screens.workers.dialog.adapters
 
-import android.content.res.Resources
+import android.annotation.SuppressLint
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.widget.addTextChangedListener
 import androidx.recyclerview.widget.RecyclerView
 import com.marcel.mycompany.R
 import com.marcel.mycompany.screens.workers.Worker
 import kotlinx.android.synthetic.main.payment_row.view.*
-import kotlin.math.absoluteValue
 
 class PaymentDialogRVAdapter :RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private var workers: List<Worker> = ArrayList()
@@ -30,7 +27,7 @@ class PaymentDialogRVAdapter :RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        (holder as PaymentDialogRVAdapter.PaymentViewHolder).initUI(workers.get(position))
+        (holder as PaymentViewHolder).initUI(workers.get(position))
 
     }
     fun clearList(){

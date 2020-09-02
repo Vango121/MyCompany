@@ -1,4 +1,4 @@
-package com.marcel.mycompany.screens.workers.dialog
+package com.marcel.mycompany.screens.workers.dialog.adapters
 
 import android.util.Log
 import android.view.LayoutInflater
@@ -36,7 +36,7 @@ class AddButtonRVAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        (holder as AddButtonViewHoler).initializeUiCompontnt(workers?.get(position)?.name+" "+ workers?.get(position)?.surName)
+        (holder as AddButtonViewHoler).initializeUiCompontnt(workers.get(position).name +" "+ workers.get(position).surName)
     }
     inner class AddButtonViewHoler(var view: View) : RecyclerView.ViewHolder(view),View.OnClickListener{
         var textViewName = view.textViewRowWorkerName

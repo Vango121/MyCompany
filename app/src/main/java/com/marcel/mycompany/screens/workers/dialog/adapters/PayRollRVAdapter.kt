@@ -1,4 +1,4 @@
-package com.marcel.mycompany.screens.workers.dialog
+package com.marcel.mycompany.screens.workers.dialog.adapters
 
 import android.view.LayoutInflater
 import android.view.View
