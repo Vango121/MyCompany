@@ -1,8 +1,10 @@
 package com.marcel.mycompany.screens.workers.repository
 
 import android.app.Application
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.google.gson.Gson
 import com.marcel.mycompany.screens.workers.Payroll
 import com.marcel.mycompany.screens.workers.Worker
 import kotlinx.coroutines.*
@@ -14,7 +16,7 @@ class RepositoryCl (val application: Application): Repository {
     init {
         val database = WorkersDatabase.getInstance(application.applicationContext)
         workersDao= database!!.workerDao()
-        payrollDao= database.payrollDao()
+        payrollDao= database!!.payrollDao()
     }
     override fun getSwitchState(): MutableLiveData<Boolean> {
         return shared.getSwitchState(application.applicationContext)
@@ -63,6 +65,7 @@ class RepositoryCl (val application: Application): Repository {
     override fun insertPayroll(payroll: Payroll) {
         CoroutineScope(Dispatchers.IO).launch {
             payrollDao.insert(payroll)
+            Log.i("insert",Gson().toJson(payroll))
         }
     }
 
@@ -88,5 +91,11 @@ class RepositoryCl (val application: Application): Repository {
             payrollDao.deleteAllRows()
         }
     }
+
+    override fun getRowCount(): Deferred<LiveData<Int>> =
+        CoroutineScope(Dispatchers.IO).async {
+            payrollDao.getRowCount()
+        }
+
 
 }

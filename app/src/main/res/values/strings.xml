@@ -40,4 +40,5 @@
     <string name="buttonAddHrs">Button Add</string>
     <string name="textViewTitleMoney">Workers sum of earnings</string>
     <string name="buttonPayrollDescr">Here u can check workers payroll with advances, hours and summary</string>
+    <string name="dialogPreviousPayroll">Previous payrolls</string>
 </resources>

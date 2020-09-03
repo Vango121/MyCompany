@@ -25,7 +25,6 @@ class RemoveWorkerDialog() :  DialogFragment(), DeleteWorkerRVAdapter.OnNoteList
     var workerAdapter : DeleteWorkerRVAdapter = DeleteWorkerRVAdapter(this)
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-
         val view: View = layoutInflater.inflate(R.layout.dialog_removeworker,null)
         view.recycler_view_workerlist_remove.apply {
             layoutManager=LinearLayoutManager(context)

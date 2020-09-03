@@ -6,12 +6,11 @@ import android.widget.Toast
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.google.gson.Gson
 import com.marcel.mycompany.Event
-import com.marcel.mycompany.ShowCaseModel
 import com.marcel.mycompany.screens.workers.repository.RepositoryCl
 import es.dmoral.toasty.Toasty
-import kotlinx.coroutines.Deferred
-import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.*
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -40,6 +39,9 @@ class WorkersViewModel(application: Application) : AndroidViewModel(application)
     val payment : LiveData<Event<String>>
         get() = _payment
 
+    private val _paymentListDialog = MutableLiveData<Event<String>>()
+    val paymentListDialog  : LiveData<Event<String>>
+        get() = _paymentListDialog
     var application1 = application
     var checked = MutableLiveData<Boolean>()
     var showCaseState = MutableLiveData<Boolean>()
@@ -47,6 +49,7 @@ class WorkersViewModel(application: Application) : AndroidViewModel(application)
         RepositoryCl(application)
     }
     private var allWorkers: Deferred<LiveData<List<Worker>>> = repository.getAllWorkers()
+    private var allPayrolls : Deferred<LiveData<List<Payroll>>> = repository.getAllPayroll()
     init {
         checked=repository.getSwitchState()
         showCaseState= repository.getShowCaseState()
@@ -80,6 +83,12 @@ class WorkersViewModel(application: Application) : AndroidViewModel(application)
     fun payment(){
         _payment.value=Event("Payment")
     }
+    fun paymentListDialog() { // dialog with previous payrolls
+        _paymentListDialog.value= Event("paymentListDialog")
+    }
+    fun getAllPayrolls() : LiveData<List<Payroll>> = runBlocking {
+        allPayrolls.await()
+    }
     fun getAllWorkers() : LiveData<List<Worker>> = runBlocking {
         allWorkers.await()
     }
@@ -94,6 +103,9 @@ class WorkersViewModel(application: Application) : AndroidViewModel(application)
     }
     fun insertPayroll(payroll: Payroll){
         repository.insertPayroll(payroll)
+    }
+    fun updatePayroll(payroll: Payroll){
+        repository.updatePayroll(payroll)
     }
     fun calcHours(start:String, end: String): Double{
         val format = SimpleDateFormat("HH:mm",Locale.getDefault())
@@ -121,11 +133,36 @@ class WorkersViewModel(application: Application) : AndroidViewModel(application)
         return df.format(c)
     }
     fun calcTotalAmount(list:List<Worker>):Double{ // calc earned money by workers to display it on worker screen
-        var total_amount =0.0
+        var totalAmount =0.0
         for (person: Worker in list) {
-            total_amount += (person.hours * person.money) - person.advance
+            totalAmount += (person.hours * person.money) - person.advance
         }
-        return total_amount
+        return totalAmount
+    }
+    fun getRowCount(): LiveData<Int> = runBlocking {
+        repository.getRowCount().await()
+    }
+    fun withdraw() { // update workers money
+        val workersList = getAllWorkers().value!!
+        for (i in 0..workersList.size - 1) {
+            workersList[i].hours = 0.0
+            workersList[i].advance = 0.0
+            updateWorker(workersList[i])
+        }
+    }
+    fun withdrawAll() { // put into payroll new record
+        val workers = getAllWorkers().value!!
+        insertPayroll(Payroll(workers,getCurrentDate()))
+        Log.i("ss",Gson().toJson(workers))
+//        GlobalScope.launch {
+//            delay(5000)
+//            for (i in 0..workers.size-1){
+//                workers[i].hours= 0.0
+//                workers[i].advance=0.0
+//                updateWorker(workers[i])
+//            }
+//        }
+
     }
 
 }

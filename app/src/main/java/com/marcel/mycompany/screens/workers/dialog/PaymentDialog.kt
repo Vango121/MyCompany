@@ -24,6 +24,7 @@ class PaymentDialog :DialogFragment() {
     val workertoUpdate : LiveData<List<Worker>>
         get() = _workertoUpdate
     var withdrawAll = MutableLiveData<Boolean>()
+    private var workerList: List<Worker> = ArrayList()
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         v= layoutInflater.inflate(R.layout.dialog_payment, null)
         v.recycler_view_workers_payment.apply {
@@ -39,7 +40,7 @@ class PaymentDialog :DialogFragment() {
                 }
                 .setNegativeButton(getString(R.string.withdraw_all)){ dialog, id ->
                     withdrawAll.value=true
-                    _workertoUpdate.value=paymentAdapter.withdrawall()
+                   // _workertoUpdate.value=paymentAdapter.withdrawall()
                     paymentAdapter.clearList()
 
                 }
@@ -60,7 +61,7 @@ class PaymentDialog :DialogFragment() {
     }
     fun addData(list: List<Worker>){
         paymentAdapter.addWorkers(list)
-        //workerList=list
+        workerList=list
         paymentAdapter.notifyDataSetChanged()
     }
     fun clearListInAdapter(){

@@ -40,4 +40,5 @@
     <string name="buttonAddHrs">Przycisk dodaj</string>
     <string name="textViewTitleMoney">Suma zarobionych pieniędzy przez pracowników</string>
     <string name="buttonPayrollDescr">" Tutaj możesz sprawdzić listę płac pracowników z zaliczkami, godzinami i podsumowaniem"</string>
+    <string name="dialogPreviousPayroll">Poprzednie listy płac</string>
 </resources>

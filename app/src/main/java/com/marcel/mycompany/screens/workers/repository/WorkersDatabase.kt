@@ -9,12 +9,12 @@ import com.marcel.mycompany.Converters
 import com.marcel.mycompany.screens.workers.Payroll
 import com.marcel.mycompany.screens.workers.Worker
 
-@Database(entities = [Worker::class, Payroll::class], version = 5,exportSchema = true)
+@Database(entities = arrayOf(Worker::class,Payroll::class), version = 7,exportSchema = true)
 @TypeConverters(Converters::class)
 abstract class WorkersDatabase : RoomDatabase() {
 
     abstract fun workerDao() : WorkersDao
-    abstract fun payrollDao():PayrollDao
+    abstract fun payrollDao() : PayrollDao
     companion object{
         private var instance: WorkersDatabase? = null
         fun getInstance(context: Context): WorkersDatabase?{
@@ -22,7 +22,7 @@ abstract class WorkersDatabase : RoomDatabase() {
                 instance = Room.databaseBuilder(
                     context,
                     WorkersDatabase::class.java,
-                    "workers_db")
+                    "workers_db1")
                     .fallbackToDestructiveMigration()
                     .build()
             }

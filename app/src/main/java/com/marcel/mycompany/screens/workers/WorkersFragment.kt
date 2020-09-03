@@ -3,6 +3,7 @@ package com.marcel.mycompany.screens.workers
 import android.app.TimePickerDialog
 import android.graphics.Rect
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,7 +11,7 @@ import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
+import com.google.gson.Gson
 import com.marcel.mycompany.R
 import com.marcel.mycompany.ShowCaseModel
 import com.marcel.mycompany.databinding.WorkersFragmentBinding
@@ -18,11 +19,14 @@ import com.marcel.mycompany.screens.workers.dialog.*
 import es.dmoral.toasty.Toasty
 import io.reactivex.rxjava3.subjects.PublishSubject
 import io.reactivex.rxjava3.subjects.Subject
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import smartdevelop.ir.eram.showcaseviewlib.GuideView
 import smartdevelop.ir.eram.showcaseviewlib.config.DismissType
 import smartdevelop.ir.eram.showcaseviewlib.config.Gravity
-import java.text.SimpleDateFormat
 import java.util.*
+import kotlin.collections.ArrayList
 
 
 class WorkersFragment : Fragment() {
@@ -30,7 +34,9 @@ class WorkersFragment : Fragment() {
     private lateinit var binding: WorkersFragmentBinding
     private val viewModel: WorkersViewModel by viewModels()
     private var workersHrs: Double = 0.0
-
+   // var listprevious: List<Worker> = ArrayList()
+    var withdrawAll= false
+    //lateinit var payrolls: List<Payroll>
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -46,8 +52,10 @@ class WorkersFragment : Fragment() {
         val payrollDialog = PayrollDialog() // payroll dialog class
         val paymentDialog = PaymentDialog()
         val editDialog = EditDialog()
+        val paymentListDialog = PaymentListDialog()
 
-        //val viewModel: WorkersViewModel by viewModels()
+
+
             binding.workersViewModel=viewModel
             viewModel.navigateToDialog.observe(viewLifecycleOwner, {
                 it.getContentIfNotHandled()?.let {
@@ -59,7 +67,11 @@ class WorkersFragment : Fragment() {
                 removeWorkerDialog.show(parentFragmentManager, "RemoveDialog")
             }
         })
-
+        paymentDialog.workertoUpdate.observe(viewLifecycleOwner){
+            for (person in it){
+                viewModel.updateWorker(person)
+            }
+        }
         //switch
         viewModel.checked.observe(viewLifecycleOwner, {
             switch(it)
@@ -69,7 +81,11 @@ class WorkersFragment : Fragment() {
         dialog.workerInfo.observe(viewLifecycleOwner, {
             viewModel.getDataFromDialog(it)
         })
-
+        //get previous payrolls
+        viewModel.getAllPayrolls().observe(viewLifecycleOwner){
+            paymentListDialog.addData(it)
+//            payrolls=it
+        }
         //get all workers from room database
         viewModel.getAllWorkers().observe(viewLifecycleOwner, {
             removeWorkerDialog.addData(it)
@@ -77,13 +93,11 @@ class WorkersFragment : Fragment() {
             payrollDialog.addData(it)
             paymentDialog.addData(it)
             editDialog.addData(it)
-            val total_amount = viewModel.calcTotalAmount(it)
-            val currrency = getString(R.string.currency)
-            binding.textView2.setText("$total_amount$currrency")
+            getTotalAmount(it)
         })
         removeWorkerDialog.workerToRemove.observe(viewLifecycleOwner, {
             viewModel.deleteWorker(it)
-            removeWorkerDialog.addData(viewModel.getAllWorkers().value!!)
+            //removeWorkerDialog.addData(viewModel.getAllWorkers().value!!)
         })
 
         viewModel.addButton.observe(viewLifecycleOwner, { //add button click observer
@@ -107,8 +121,6 @@ class WorkersFragment : Fragment() {
                             ).show()
                         }
                     }
-
-
                 } else {
                     context?.let { it1 ->
                         Toasty.error(
@@ -128,7 +140,6 @@ class WorkersFragment : Fragment() {
                 viewModel.updateWorker(person)
                 binding.editTextTime.setText("")
                 binding.editTextTime2.setText("")
-                //binding.button2.setBackgroundResource(R.drawable.rounded_button)
             }
         })
 
@@ -149,20 +160,18 @@ class WorkersFragment : Fragment() {
                 editDialog.show(parentFragmentManager,it)
             }
         })
-        var withdrawAll= false
+
         paymentDialog.withdrawAll.observe(viewLifecycleOwner,{
             withdrawAll=it
-        })
-        paymentDialog.workertoUpdate.observe(viewLifecycleOwner, {
-
-            for (person: Worker in it) {
-                viewModel.updateWorker(person)
-            }
             if (withdrawAll) {
-                val payroll = Payroll(it, viewModel.getCurrentDate())
-                viewModel.insertPayroll(payroll)
+                viewModel.withdrawAll()
+                viewModel.getRowCount().observe(viewLifecycleOwner){
+                    viewModel.withdraw()
+                }
+                withdrawAll=false
             }
         })
+
 
 
         //check if showcase was already displayed
@@ -170,17 +179,26 @@ class WorkersFragment : Fragment() {
             if (!it) {
                 showCaseView()
                 viewModel.saveShowCaseState()
-                viewModel
             }
         })
         //EditDialog update worker
         editDialog.workerToEdit.observe(viewLifecycleOwner,{
             viewModel.updateWorker(it)
         })
+        //Payment lists dialog
+        viewModel.paymentListDialog.observe(viewLifecycleOwner){
+            it.getContentIfNotHandled()?.let {
+                paymentListDialog.show(parentFragmentManager,it)
+            }
+        }
 
         return binding.root
     }
-
+    fun getTotalAmount(workerlist:List<Worker>){
+        val total_amount = viewModel.calcTotalAmount(workerlist)
+        val currrency = getString(R.string.currency)
+        binding.textView2.setText("$total_amount$currrency")
+    }
     fun switch(isChecked: Boolean){
         if(isChecked){
         binding.editTextTime.isEnabled=true
@@ -215,7 +233,7 @@ class WorkersFragment : Fragment() {
                 val timePickerDialog =
                     TimePickerDialog(
                         context, R.style.DialogTheme,
-                        TimePickerDialog.OnTimeSetListener { timePicker, hourOfDay, minutes ->
+                        { timePicker, hourOfDay, minutes ->
                             binding.editTextTime2.setText(
                                 String.format(
                                     "%02d:%02d",
@@ -256,7 +274,7 @@ class WorkersFragment : Fragment() {
             false
         }
     }
-fun showCaseView(){
+    fun showCaseView(){
 
     var i =0
     val list : MutableList<ShowCaseModel> = ArrayList()
@@ -336,7 +354,7 @@ fun showCaseView(){
             .show()
     }
     mObservable.onNext(list[0])
+    }
 
 
-}
 }

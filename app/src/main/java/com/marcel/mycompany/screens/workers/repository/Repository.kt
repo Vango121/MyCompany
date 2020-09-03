@@ -22,4 +22,5 @@ interface Repository {
     fun deletePayroll(payroll:Payroll)
     fun getAllPayroll() : Deferred<LiveData<List<Payroll>>>
     fun deleteAllPayroll()
+    fun getRowCount(): Deferred<LiveData<Int>>
 }

@@ -56,7 +56,7 @@ class AddWorkersDialog :  DialogFragment() {
         val surname= v.editTextSurname?.text.toString()
         val money = v.editTextMoney?.text.toString()
         if(!name.equals("") && !surname.equals("") && !money.equals("")){
-            worker= Worker(name,surname,money.toDouble())
+            worker= Worker(name,surname,money.toDouble(),0.0,0.0)
             _workerInfo.value=worker
             dismiss()
         }

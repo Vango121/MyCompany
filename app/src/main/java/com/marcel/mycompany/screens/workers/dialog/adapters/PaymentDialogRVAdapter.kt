@@ -31,6 +31,7 @@ class PaymentDialogRVAdapter :RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     }
     fun clearList(){
+        currentAdvances.clear()
         for (i in 0..workers.size-1){
             currentAdvances.add(0.0)
         }
@@ -38,15 +39,7 @@ class PaymentDialogRVAdapter :RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     fun getWorkersUpdate(): List<Worker>{
         workersToUpdate=workers
         for (i in 0..workers.size-1){
-            workersToUpdate[i].advance=currentAdvances[i]
-        }
-        return workersToUpdate
-    }
-    fun withdrawall(): List<Worker>{
-        workersToUpdate=workers
-        for (i in 0..workers.size-1){
-            workersToUpdate[i].hours= 0.0
-            workersToUpdate[i].advance=0.0
+            workersToUpdate[i].advance=currentAdvances[i]+workersToUpdate[i].advance
         }
         return workersToUpdate
     }
@@ -62,7 +55,7 @@ class PaymentDialogRVAdapter :RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         //val advances:String =Resources.getSystem().getString(R.string.advance)
         val editText= view.editTextAdvance
         fun initUI(worker: Worker){
-            val sum = worker.hours*worker.money
+            val sum = worker.hours*worker.money-worker.advance
             data.setText("${worker.name} ${worker.surName} $sum")
             editText.addTextChangedListener(object : TextWatcher{
                 override fun beforeTextChanged(
