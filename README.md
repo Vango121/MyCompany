@@ -11,6 +11,7 @@ Application managing the company (Work in Progress)
 - Espresso
 - Recycler View 
 - RxKotlin
+- Hilt ( Dependency injection)
 
 #### Screen shots
 ![main](http://hackheroes.cba.pl/imggit/workersmain.png)
