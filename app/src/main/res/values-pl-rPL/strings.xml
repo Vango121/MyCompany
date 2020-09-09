@@ -41,4 +41,8 @@
     <string name="textViewTitleMoney">Suma zarobionych pieniędzy przez pracowników</string>
     <string name="buttonPayrollDescr">" Tutaj możesz sprawdzić listę płac pracowników z zaliczkami, godzinami i podsumowaniem"</string>
     <string name="dialogPreviousPayroll">Poprzednie listy płac</string>
+    <string name="edit_worker_descr">Edytuj imie nazwisko lub stawkę godzinową</string>
+    <string name="payroll_button_descr">Tutaj możesz dodać zaliczki pracownikom, lub wypłacić wszystko, a lista zapiszę się w historii</string>
+    <string name="image_payroll_history">Historia wypłat</string>
+    <string name="image_payroll_historyDescr">Tutaj możesz zobaczyć poprzednie listy płac</string>
 </resources>

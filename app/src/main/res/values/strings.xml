@@ -41,4 +41,8 @@
     <string name="textViewTitleMoney">Workers sum of earnings</string>
     <string name="buttonPayrollDescr">Here u can check workers payroll with advances, hours and summary</string>
     <string name="dialogPreviousPayroll">Previous payrolls</string>
+    <string name="edit_worker_descr">Edit name, surname, hourly rate</string>
+    <string name="payroll_button_descr">Here u can withdraw money or add advance</string>
+    <string name="image_payroll_history">Payroll History</string>
+    <string name="image_payroll_historyDescr">Here u can check previous payrolls</string>
 </resources>

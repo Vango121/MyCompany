@@ -2,13 +2,13 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".screens.workers.WorkersFragment">
+    tools:context=".ui.WorkersFragment">
 
     
     <data>
         <variable
             name="workersViewModel"
-            type="com.marcel.mycompany.screens.workers.WorkersViewModel" />
+            type="com.marcel.mycompany.ui.WorkersViewModel" />
     </data>
 <ScrollView
     android:layout_width="match_parent"
